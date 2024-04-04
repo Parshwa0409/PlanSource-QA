@@ -16,7 +16,6 @@ class BaseClass:
         self.CLASS_NAME = "class name"
         self.CSS_SELECTOR = "css selector"
 
-
     def chrome_driver(self):
         return self.driver
 
@@ -26,7 +25,8 @@ class BaseClass:
     def implicit_wait(self, sec=7):
         self.driver.implicitly_wait(sec)
 
-    def explicit_wait(self, locator_tag, locator, multiple=False) -> WebElement or TimeoutException or NoSuchElementException:
+    def explicit_wait(self, locator_tag, locator,
+                      multiple=False) -> WebElement or TimeoutException or NoSuchElementException:
         if not multiple:
             return WebDriverWait(self.driver, 10).until(
                 EC.presence_of_element_located((locator_tag, locator))

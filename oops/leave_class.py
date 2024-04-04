@@ -21,8 +21,8 @@ class LeaveClass(BaseClass):
     def __choose_tab(self, link_text: str):
         self.explicit_wait(self.LINK_TEXT, link_text).click()
 
-    def __choose_from_dropdown(self, option_text: str):
-        self.driver.find_element(self.XPATH, "//div[contains(text(),'Select')]").click()
+    def __choose_from_dropdown(self, option_text: str, index: int):
+        self.driver.find_elements(self.XPATH, "//div[@class='oxd-select-wrapper']")[index].click()
         self.explicit_wait(self.XPATH, f"//span[contains(text(),'{option_text}')]").click()
 
     def __choose_date(self, date_info: DT.datetime, index: int):
@@ -36,15 +36,15 @@ class LeaveClass(BaseClass):
 
     # SELECT LEAVE TYPE
     def choose_leave_type(self):
-        self.__choose_from_dropdown(option_text=self.LEAVE_TYPE)
+        self.__choose_from_dropdown(option_text=self.LEAVE_TYPE, index=0)
 
     # SELECT PARTIAL DAYS
     def choose_working_partial_days(self):
-        self.__choose_from_dropdown(option_text=self.PARTIAL_DAYS)
+        self.__choose_from_dropdown(option_text=self.PARTIAL_DAYS, index=1)
 
     # SELECT DURATION
     def choose_partial_days_working_duration(self):
-        self.__choose_from_dropdown(option_text=self.DURATION)
+        self.__choose_from_dropdown(option_text=self.DURATION, index=2)
 
     # SELECT FROM DATE
     def choose_from_date(self):

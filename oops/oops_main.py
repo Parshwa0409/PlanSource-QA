@@ -10,8 +10,7 @@ driver.get('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
 driver.maximize_window()
 driver.implicitly_wait(14)
 
-
-comment = 'PSI295-Leave-Application'
+comment = 'PSI293007-Leave-Application'
 
 # ALL PAGES INSTANCE
 base_page = BaseClass(driver=driver)
@@ -23,7 +22,6 @@ try:
     base_page.implicit_wait()
     session_page.login_admin()
     leave_page.open_leave_page()
-
 
     if leave_page.current_url() == "https://opensource-demo.orangehrmlive.com/web/index.php/leave/viewLeaveList":
         print("LEAVE PAGE OPENED!!!")
@@ -46,11 +44,7 @@ try:
     leave_page.view_leave_details(msg=comment)
     leave_page.cancel_all_leave_applications()
     session_page.logout_admin()
-
-
-
 except Exception as e:
     print(f'{e}')
-
 
 input("Type something to exit/quit: ")
